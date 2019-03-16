@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Mobiquitest</string>
+    <string name="baseUrl">http://mobcategories.s3-website-eu-west-1.amazonaws.com/</string>
+</resources>
