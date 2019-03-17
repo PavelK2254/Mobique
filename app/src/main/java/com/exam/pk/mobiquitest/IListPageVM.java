@@ -1,5 +1,5 @@
 package com.exam.pk.mobiquitest;
 
-public interface IListPagePresenter {
+public interface IListPageVM {
     void onNetworkResponse(String response);
 }

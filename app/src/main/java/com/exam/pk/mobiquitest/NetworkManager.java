@@ -3,10 +3,6 @@ package com.exam.pk.mobiquitest;
 import android.content.Context;
 import android.util.Log;
 
-import com.exam.pk.mobiquitest.Model.Category;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 import java.io.IOException;
 
 import okhttp3.Call;
@@ -20,7 +16,7 @@ public class NetworkManager {
     private String TAG = getClass().getSimpleName();
     private OkHttpClient mClient = new OkHttpClient();
     private static final NetworkManager ourInstance = new NetworkManager();
-    private  IListPagePresenter iListPagePresenter;
+    private IListPageVM iListPageVM;
 
 
     public static NetworkManager getInstance() {
@@ -30,8 +26,8 @@ public class NetworkManager {
     private NetworkManager() {
         }
 
-        public void setListPagePresenter(IListPagePresenter listPagePresenter){
-            iListPagePresenter = listPagePresenter;
+        public void setListPagePresenter(IListPageVM listPagePresenter){
+            iListPageVM = listPagePresenter;
         }
 
 
@@ -47,7 +43,7 @@ public class NetworkManager {
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
                    String body = response.body().string();
-                    iListPagePresenter.onNetworkResponse(body);
+                    iListPageVM.onNetworkResponse(body);
                 }
             });
         }

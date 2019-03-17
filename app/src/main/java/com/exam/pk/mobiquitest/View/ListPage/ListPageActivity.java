@@ -3,13 +3,14 @@ package com.exam.pk.mobiquitest.View.ListPage;
 import android.os.Bundle;
 
 
-import com.exam.pk.mobiquitest.ListPagePresenter;
+import com.exam.pk.mobiquitest.ListPageVM;
 import com.exam.pk.mobiquitest.Model.Category;
 import com.exam.pk.mobiquitest.R;
 import com.google.android.material.tabs.TabLayout;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,8 +24,8 @@ public class ListPageActivity extends AppCompatActivity  {
     @BindView(R.id.pager)
     ViewPager viewPager;
 
-    ListPagePresenter listPagePresenter;
-
+    ListPageVM listPageVM;
+    PagerAdapter mPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,23 +36,25 @@ public class ListPageActivity extends AppCompatActivity  {
 
     }
 
-    public void applyCategories(){
-        Category[] categories = listPagePresenter.getCategoryArray();
-        for (Category x:categories) {
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    pageListTabs.addTab(pageListTabs.newTab().setText(x.getName()));
-                }
+    public void applyCategories(Category[] categories){
+       // Category[] categories = listPageVM.getCategoryArray();
+            runOnUiThread(() -> {
+                initViewPager(categories);
             });
-
-        }
     }
 
+    private void initViewPager(Category[] categories){
+        mPagerAdapter = new PagerAdapter(getSupportFragmentManager(),categories);
+        viewPager.setAdapter(mPagerAdapter);
+    }
 
     @Override
     protected void onStart() {
         super.onStart();
-        listPagePresenter = new ListPagePresenter(this);
+        listPageVM = ViewModelProviders.of(this).get(ListPageVM.class);
+        listPageVM.getCategories(getString(R.string.baseUrl)).observe(this, categories -> {
+            applyCategories(categories);
+        });
+
     }
 }
