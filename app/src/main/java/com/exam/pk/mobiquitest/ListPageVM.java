@@ -2,6 +2,7 @@ package com.exam.pk.mobiquitest;
 
 
 import com.exam.pk.mobiquitest.Model.Category;
+import com.exam.pk.mobiquitest.Model.Product;
 import com.google.gson.Gson;
 
 import androidx.lifecycle.LiveData;
@@ -11,7 +12,8 @@ import androidx.lifecycle.ViewModel;
 public class ListPageVM extends ViewModel implements IListPageVM {
 
     private NetworkManager mNetworkManager;
-    private MutableLiveData<Category[]> categoryData;
+    private MutableLiveData<Category[]> categoriesData;
+    private MutableLiveData<Product[]> productsData;
 
     public ListPageVM() {
         mNetworkManager = NetworkManager.getInstance();
@@ -19,18 +21,22 @@ public class ListPageVM extends ViewModel implements IListPageVM {
     }
 
     public LiveData<Category[]> getCategories(String url){
-        if(categoryData == null){
-            categoryData = new MutableLiveData<>();
+        if(categoriesData == null){
+            categoriesData = new MutableLiveData<>();
             mNetworkManager.doGetRequest(url);
         }
-        return categoryData;
+        return categoriesData;
+    }
+
+    public LiveData<Product> getProduct(int positionInCategory){
+       //TODO : Finish this
     }
 
     @Override
     public void onNetworkResponse(String response) {
         Gson gson = new Gson();
         Category[] categoryArray = gson.fromJson(response, Category[].class);
-        categoryData.postValue(categoryArray);
+        categoriesData.postValue(categoryArray);
 
     }
 
