@@ -4,7 +4,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="@dimen/product_list_item_height"
-    android:background="#ffffff">
+    android:elevation="4dp"
+    android:background="@drawable/rect">
 
 
     <ImageView
@@ -16,7 +17,7 @@
     <FrameLayout
         android:id="@+id/product_list_item_text_layer"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/product_list_layer_height"
+        android:layout_height="match_parent"
         android:background="#000000"
         android:alpha="0.6"
         android:layout_gravity="bottom"
@@ -28,11 +29,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Example Example"
-        android:textAlignment="center"
         android:fontFamily="@font/font_opensans"
         android:textColor="#ffffff"
         android:padding="@dimen/product_list_item_text_padding"
-        android:layout_gravity="bottom"
+        android:textSize="20dp"
+        android:layout_gravity="center_vertical"
         />
 
 </FrameLayout>

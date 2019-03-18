@@ -3,15 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="#22000000">
+    android:background="#99000000"
+    android:padding="10dp"
+    >
 
     <androidx.cardview.widget.CardView
-        android:layout_width="350dp"
-        android:layout_height="400dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:cardCornerRadius="4dp"
         android:layout_gravity="center"
         android:background="#c3c3c3"
-        android:padding="10dp"
+
         >
 
         <LinearLayout
@@ -24,10 +26,29 @@
             android:layout_width="match_parent"
             android:layout_height="250dp" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:text="TEXTTT"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <TextView
+                    android:id="@+id/detail_product_name"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+
+                    android:textSize="32dp"
+                    />
+                <TextView
+                    android:id="@+id/detail_product_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="viewEnd"
+                    android:textSize="25dp"
+                    android:paddingRight="15dp"
+                    />
+            </LinearLayout>
+
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>

@@ -1,6 +1,7 @@
 package com.exam.pk.mobiquitest.View.ListPage;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +23,7 @@ public class ProductListAdapter extends RecyclerView.Adapter {
     private Product[] mDataset;
     private Context mContext;
 
-
+    View.OnClickListener mOnclickListener;
 
 
     public class ProductItem extends RecyclerView.ViewHolder{
@@ -42,9 +43,10 @@ public class ProductListAdapter extends RecyclerView.Adapter {
 
     }
 
-    public ProductListAdapter(Product[] products, Context context) {
+    public ProductListAdapter(Product[] products, Context context, View.OnClickListener onClickListener) {
         mDataset = products;
         mContext = context;
+        mOnclickListener = onClickListener;
     }
 
     @NonNull
@@ -52,10 +54,6 @@ public class ProductListAdapter extends RecyclerView.Adapter {
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         FrameLayout productListItem = (FrameLayout) LayoutInflater.from(parent.getContext()).inflate(R.layout.product_list_item,parent,false);
         ProductItem vh = new ProductItem(productListItem);
-
-        vh.itemView.setOnClickListener(v -> {
-
-        });
         return vh;
     }
 
@@ -65,7 +63,10 @@ public class ProductListAdapter extends RecyclerView.Adapter {
        String imageUrl = (mDataset[position].getUrl()).substring(1);
        productItem.vhText.setText(mDataset[position].getName());
        Picasso.get().load(mContext.getString(R.string.baseUrl) + imageUrl).fit().error(R.drawable.missing_image).into(productItem.vhImage);
-
+        productItem.itemView.setOnClickListener(v -> {
+            v.setTag(position);
+            mOnclickListener.onClick(v);
+        });
     }
 
     @Override
