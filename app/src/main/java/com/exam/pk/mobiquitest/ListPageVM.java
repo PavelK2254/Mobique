@@ -6,6 +6,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+
+
 public class ListPageVM extends ViewModel implements IListPageVM {
 
     private NetworkManager mNetworkManager;
@@ -58,8 +60,7 @@ public class ListPageVM extends ViewModel implements IListPageVM {
 
    public Product getCurrentProduct(){
         Category currentCategory = mFullDataSet[mCurrentSelectedCategory];
-        Product currentProduct = currentCategory.getProducts().get(mCurrentSelectedProduct);
-        return currentProduct;
+        return currentCategory.getProducts().get(mCurrentSelectedProduct);
    }
 
 

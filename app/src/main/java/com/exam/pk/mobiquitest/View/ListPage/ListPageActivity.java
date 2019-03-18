@@ -20,6 +20,8 @@ import com.exam.pk.mobiquitest.View.ListPageSwipeRefreshLayout;
 import com.google.android.material.tabs.TabLayout;
 
 
+import java.util.Objects;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
@@ -54,7 +56,7 @@ public class ListPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_page);
 
-        getSupportActionBar().hide();
+        Objects.requireNonNull(getSupportActionBar()).hide();
         ButterKnife.bind(this);
 
         pageListTabs.setupWithViewPager(viewPager);

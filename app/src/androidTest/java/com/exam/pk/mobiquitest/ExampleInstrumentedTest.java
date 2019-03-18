@@ -23,4 +23,6 @@ public class ExampleInstrumentedTest {
         Context appContext = InstrumentationRegistry.getTargetContext();
         assertEquals("com.exam.pk.mobiquitest", appContext.getPackageName());
     }
+
+
 }

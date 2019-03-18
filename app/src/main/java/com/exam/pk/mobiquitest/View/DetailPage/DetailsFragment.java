@@ -13,6 +13,8 @@ import com.exam.pk.mobiquitest.Model.Product;
 import com.exam.pk.mobiquitest.R;
 import com.squareup.picasso.Picasso;
 
+import java.util.Objects;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -31,19 +33,17 @@ public class DetailsFragment extends Fragment {
     @BindView(R.id.detail_product_price)
     TextView mProductPrice;
 
-    Product mCurrentProduct;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        ListPageVM listPageVM =  ViewModelProviders.of(getActivity()).get(ListPageVM.class);
-        mCurrentProduct = listPageVM.getCurrentProduct();
+        ListPageVM listPageVM =  ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(ListPageVM.class);
+        Product mCurrentProduct = listPageVM.getCurrentProduct();
         FrameLayout root = (FrameLayout) inflater.inflate(R.layout.detail_page,container,false);
         ButterKnife.bind(this,root);
         mProductName.setText(mCurrentProduct.getName());
-        mProductPrice.setText(mCurrentProduct.getSalePrice().getAmount() + " " + mCurrentProduct.getSalePrice().getCurrency());
+        mProductPrice.setText(String.format("%s %s", mCurrentProduct.getSalePrice().getAmount(), mCurrentProduct.getSalePrice().getCurrency()));
         String imageUrl = mCurrentProduct.getUrl().substring(1);
-        Picasso.get().load(getContext().getString(R.string.baseUrl) + imageUrl).error(R.drawable.missing_image).into(mDetailImageView);
+        Picasso.get().load(Objects.requireNonNull(getContext()).getString(R.string.baseUrl) + imageUrl).error(R.drawable.missing_image).into(mDetailImageView);
         return root;
     }
 
