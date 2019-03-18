@@ -31,13 +31,13 @@ public class ListPageActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_page);
+        getSupportActionBar().hide();
         ButterKnife.bind(this);
         pageListTabs.setupWithViewPager(viewPager);
 
     }
 
     public void applyCategories(Category[] categories){
-       // Category[] categories = listPageVM.getCategoryArray();
             runOnUiThread(() -> {
                 initViewPager(categories);
             });
@@ -54,6 +54,7 @@ public class ListPageActivity extends AppCompatActivity  {
         listPageVM = ViewModelProviders.of(this).get(ListPageVM.class);
         listPageVM.getCategories(getString(R.string.baseUrl)).observe(this, categories -> {
             applyCategories(categories);
+
         });
 
     }

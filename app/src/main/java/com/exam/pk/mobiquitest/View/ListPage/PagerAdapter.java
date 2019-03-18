@@ -3,6 +3,9 @@ package com.exam.pk.mobiquitest.View.ListPage;
 import android.os.Bundle;
 
 import com.exam.pk.mobiquitest.Model.Category;
+import com.exam.pk.mobiquitest.Model.Product;
+
+import java.util.List;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -21,7 +24,8 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         Fragment pageFragment = new PageFragment();
         Bundle arguments = new Bundle();
-
+        arguments.putSerializable("products",getProductsFromCategory(mCategories,position));
+        pageFragment.setArguments(arguments);
         return pageFragment;
     }
 
@@ -34,5 +38,9 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         return mCategories[position].getName();
+    }
+
+    public Product[] getProductsFromCategory(Category[] categories, int position){
+        return categories[position].getProducts().toArray(new Product[0]);
     }
 }
