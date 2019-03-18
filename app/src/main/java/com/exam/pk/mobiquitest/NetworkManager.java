@@ -1,10 +1,6 @@
 package com.exam.pk.mobiquitest;
 
-import android.content.Context;
-import android.util.Log;
-
 import java.io.IOException;
-
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -12,8 +8,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class NetworkManager {
-    private Context mContext;
-    private String TAG = getClass().getSimpleName();
+
     private OkHttpClient mClient = new OkHttpClient();
     private static final NetworkManager ourInstance = new NetworkManager();
     private IListPageVM iListPageVM;
@@ -33,11 +28,10 @@ public class NetworkManager {
 
         public void doGetRequest(String url){
             Request request = new Request.Builder().url(url).build();
-
             mClient.newCall(request).enqueue(new Callback() {
                 @Override
                 public void onFailure(Call call, IOException e) {
-                    Log.i(TAG, "Error: " + e.getMessage());
+                    iListPageVM.onNetworkFailure();
                 }
 
                 @Override
@@ -47,7 +41,6 @@ public class NetworkManager {
                 }
             });
         }
-
     }
 
 

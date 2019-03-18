@@ -1,10 +1,7 @@
 package com.exam.pk.mobiquitest;
-
-
 import com.exam.pk.mobiquitest.Model.Category;
 import com.exam.pk.mobiquitest.Model.Product;
 import com.google.gson.Gson;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -22,6 +19,8 @@ public class ListPageVM extends ViewModel implements IListPageVM {
         mNetworkManager.setListPagePresenter(this);
 
     }
+
+
 
     public LiveData<Category[]> getCategories(String url){
         if(categoriesData == null){
@@ -43,8 +42,18 @@ public class ListPageVM extends ViewModel implements IListPageVM {
     }
 
     @Override
+    public void onNetworkFailure() {
+        categoriesData.postValue(null);
+    }
+
+    @Override
     public void onProductItemClicked(int itemIndex) {
         mCurrentSelectedProduct = itemIndex;
+    }
+
+    public Product[] getCurrentProducts(int position){
+        Category currentCategory = mFullDataSet[position];
+        return currentCategory.getProducts().toArray(new Product[0]);
     }
 
    public Product getCurrentProduct(){
@@ -57,4 +66,10 @@ public class ListPageVM extends ViewModel implements IListPageVM {
     public void setmCurrentSelectedCategory(int mCurrentSelectedCategory) {
         this.mCurrentSelectedCategory = mCurrentSelectedCategory;
     }
+
+    public void setCategoriesData(MutableLiveData<Category[]> categoriesData) {
+        this.categoriesData = categoriesData;
+    }
+
+
 }

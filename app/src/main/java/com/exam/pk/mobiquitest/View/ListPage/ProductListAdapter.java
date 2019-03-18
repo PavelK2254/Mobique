@@ -62,7 +62,7 @@ public class ProductListAdapter extends RecyclerView.Adapter {
        ProductItem productItem = (ProductItem) holder;
        String imageUrl = (mDataset[position].getUrl()).substring(1);
        productItem.vhText.setText(mDataset[position].getName());
-       Picasso.get().load(mContext.getString(R.string.baseUrl) + imageUrl).fit().error(R.drawable.missing_image).into(productItem.vhImage);
+       Picasso.get().load(mContext.getString(R.string.baseUrl) + imageUrl).error(R.drawable.missing_image).into(productItem.vhImage);
         productItem.itemView.setOnClickListener(v -> {
             v.setTag(position);
             mOnclickListener.onClick(v);

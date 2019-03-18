@@ -26,7 +26,7 @@ public class PagerAdapter extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         Fragment pageFragment = new PageFragment();
         Bundle arguments = new Bundle();
-        arguments.putSerializable("products",getProductsFromCategory(mCategories,position));
+        arguments.putInt("position",position);
         pageFragment.setArguments(arguments);
         return pageFragment;
     }

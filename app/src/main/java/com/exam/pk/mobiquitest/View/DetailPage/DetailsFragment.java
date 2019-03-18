@@ -43,7 +43,7 @@ public class DetailsFragment extends Fragment {
         mProductName.setText(mCurrentProduct.getName());
         mProductPrice.setText(mCurrentProduct.getSalePrice().getAmount() + " " + mCurrentProduct.getSalePrice().getCurrency());
         String imageUrl = mCurrentProduct.getUrl().substring(1);
-        Picasso.get().load(getContext().getString(R.string.baseUrl) + imageUrl).fit().error(R.drawable.missing_image).into(mDetailImageView);
+        Picasso.get().load(getContext().getString(R.string.baseUrl) + imageUrl).error(R.drawable.missing_image).into(mDetailImageView);
         return root;
     }
 

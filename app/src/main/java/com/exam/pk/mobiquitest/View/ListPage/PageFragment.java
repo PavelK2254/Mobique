@@ -1,5 +1,6 @@
 package com.exam.pk.mobiquitest.View.ListPage;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
@@ -29,7 +31,8 @@ public class PageFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         Bundle args = getArguments();
-        Product[] currentProducts = (Product[]) args.getSerializable("products");
+        int currentPosition = args.getInt("position");
+        Product[] currentProducts = ViewModelProviders.of(getActivity()).get(ListPageVM.class).getCurrentProducts(currentPosition);
         FrameLayout rootView = (FrameLayout) inflater.inflate(R.layout.page,container,false);
         ButterKnife.bind(this,rootView);
         setupProductList(mProductList,currentProducts);
@@ -37,7 +40,14 @@ public class PageFragment extends Fragment {
     }
 
     private void setupProductList(RecyclerView productList, Product[] products){
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this.getContext());
+        RecyclerView.LayoutManager layoutManager;
+        int orientation = getResources().getConfiguration().orientation;
+        if(orientation == Configuration.ORIENTATION_PORTRAIT){
+            layoutManager = new LinearLayoutManager(this.getContext());
+        }else{
+            layoutManager = new GridLayoutManager(this.getContext(),2,RecyclerView.VERTICAL,false);
+
+        }
         RecyclerView.Adapter adapter = new ProductListAdapter(products,getContext(), v -> {
             ((ListPageActivity)getActivity()).clickOnProduct((Integer)v.getTag());
         });

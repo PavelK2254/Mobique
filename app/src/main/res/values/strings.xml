@@ -2,4 +2,11 @@
     <string name="app_name">Mobiquitest</string>
     <string name="baseUrl">http://mobcategories.s3-website-eu-west-1.amazonaws.com/</string>
     <string name="product_image_description">Product image</string>
+    <string name="server_error">Error fetching data from the server, please try again later</string>
+    <string name="retry_btn">Retry</string>
+    <string name="leave_btn">Leave</string>
+    <string name="settings_btn">Settings</string>
+    <string name="no_internet_text">No internet connection detected. Please turn it on or try again later</string>
+    <string name="mainproductimage">MainProductImage</string>
+    <string name="price">Price:</string>
 </resources>

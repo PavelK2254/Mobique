@@ -4,36 +4,36 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="@dimen/product_list_item_height"
-    android:elevation="4dp"
-    android:background="@drawable/rect">
+    android:elevation="@dimen/default_elevation"
+    android:background="@color/white"
+    >
 
 
     <ImageView
         android:id="@+id/product_list_item_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scaleType="fitCenter"
         android:contentDescription="@string/product_image_description" />
 
     <FrameLayout
         android:id="@+id/product_list_item_text_layer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#000000"
+        android:background="@drawable/overlay_grad"
         android:alpha="0.6"
-        android:layout_gravity="bottom"
-        >
+        android:layout_gravity="bottom">
 
     </FrameLayout>
     <TextView
         android:id="@+id/product_list_item_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Example Example"
         android:fontFamily="@font/font_opensans"
-        android:textColor="#ffffff"
-        android:padding="@dimen/product_list_item_text_padding"
-        android:textSize="20dp"
-        android:layout_gravity="center_vertical"
+        android:textColor="@color/white"
+        android:padding="@dimen/product_item_text_padding"
+        android:textSize="@dimen/product_item_text_size"
+        android:layout_gravity="bottom"
         />
 
 </FrameLayout>
