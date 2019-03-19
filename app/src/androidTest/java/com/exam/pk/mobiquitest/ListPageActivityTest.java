@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.Objects;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
@@ -70,7 +71,7 @@ public class ListPageActivityTest {
     public void didAdapterReceivedCategories() throws InterruptedException {
         mActivity.refreshData(true, mBaseUrl, categories -> {
             mActivity.applyCategories(categories);
-            assertEquals(2,mActivity.getViewPager().getAdapter().getCount());
+            assertEquals(2, Objects.requireNonNull(mActivity.getViewPager().getAdapter()).getCount());
             latch.countDown();
         });
         latch.await(2000, TimeUnit.MILLISECONDS);
