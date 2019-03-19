@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -32,8 +33,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:scaleType="fitCenter"
-
-                />
+                android:contentDescription="@string/product_image_description" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -46,30 +46,32 @@
                     android:fontFamily="@font/font_opensans"
                     android:padding="@dimen/detail_page_main_text_padding"
                     android:textSize="@dimen/detail_page_text_size"
+                    android:textStyle="bold"
                     />
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    >
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/detail_page_text_size"
-                        android:padding="@dimen/detail_page_main_text_padding"
-                        android:textStyle="bold"
                         android:fontFamily="@font/font_opensans"
+                        android:paddingStart="@dimen/detail_page_main_text_padding"
                         android:text="@string/price"
-                        />
+                        android:textSize="@dimen/detail_page_text_size"
+                        tools:ignore="RtlSymmetry" />
+
                     <TextView
                         android:id="@+id/detail_product_price"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textAlignment="viewStart"
                         android:fontFamily="@font/font_opensans"
-                        android:textSize="@dimen/detail_page_text_size"
-                        android:paddingEnd="15dp"
-                        />
+                        android:paddingEnd="@dimen/detail_price_padding"
+                        android:paddingStart="15dp"
+                        android:textAlignment="viewStart"
+                        android:textSize="@dimen/detail_page_text_size" />
                 </LinearLayout>
 
             </LinearLayout>

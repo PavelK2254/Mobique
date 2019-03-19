@@ -82,7 +82,7 @@ public class ListPageActivityTest {
         mActivity.refreshData(true, mBaseUrl, categories -> {
             mActivity.applyCategories(categories);
             for (int i = 0; i < categories.length; i++) {
-                assertEquals(categories[i].getName(),mActivity.getViewPager().getAdapter().getPageTitle(i));
+                assertEquals(categories[i].getName(), Objects.requireNonNull(mActivity.getViewPager().getAdapter()).getPageTitle(i));
             }
 
             latch.countDown();

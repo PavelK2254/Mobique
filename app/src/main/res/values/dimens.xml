@@ -8,4 +8,5 @@
     <dimen name="product_item_text_size">25sp</dimen>
     <dimen name="detail_page_text_size">25sp</dimen>
     <dimen name="detail_page_main_text_padding">10dp</dimen>
+    <dimen name="detail_price_padding">15dp</dimen>
 </resources>
