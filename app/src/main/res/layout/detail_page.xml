@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -43,6 +44,7 @@
                     android:fontFamily="@font/font_opensans"
                     android:padding="@dimen/detail_page_main_text_padding"
                     android:textSize="@dimen/detail_page_text_size"
+                    android:textStyle="bold"
                     />
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -54,7 +56,6 @@
                         android:layout_height="wrap_content"
                         android:textSize="@dimen/detail_page_text_size"
                         android:padding="@dimen/detail_page_main_text_padding"
-                        android:textStyle="bold"
                         android:fontFamily="@font/font_opensans"
                         android:text="@string/price"
                         />
@@ -66,7 +67,7 @@
                         android:fontFamily="@font/font_opensans"
                         android:textSize="@dimen/detail_page_text_size"
                         android:paddingEnd="15dp"
-                        />
+                        tools:ignore="RtlSymmetry" />
                 </LinearLayout>
 
             </LinearLayout>
