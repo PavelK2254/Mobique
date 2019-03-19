@@ -39,10 +39,17 @@ public class DetailsFragment extends Fragment {
         ListPageVM listPageVM =  ViewModelProviders.of(Objects.requireNonNull(getActivity())).get(ListPageVM.class);
         Product mCurrentProduct = listPageVM.getCurrentProduct();
         FrameLayout root = (FrameLayout) inflater.inflate(R.layout.detail_page,container,false);
+        String imageUrl;
         ButterKnife.bind(this,root);
-        mProductName.setText(mCurrentProduct.getName());
-        mProductPrice.setText(String.format("%s %s", mCurrentProduct.getSalePrice().getAmount(), mCurrentProduct.getSalePrice().getCurrency()));
-        String imageUrl = mCurrentProduct.getUrl().substring(1);
+        if(mCurrentProduct != null){
+            mProductName.setText(mCurrentProduct.getName());
+            mProductPrice.setText(String.format("%s %s", mCurrentProduct.getSalePrice().getAmount(), mCurrentProduct.getSalePrice().getCurrency()));
+            imageUrl = mCurrentProduct.getUrl().substring(1);
+        }else{
+            imageUrl = "unAvailable";
+        }
+
+
         Picasso.get().load(Objects.requireNonNull(getContext()).getString(R.string.baseUrl) + imageUrl).error(R.drawable.missing_image).into(mDetailImageView);
         return root;
     }

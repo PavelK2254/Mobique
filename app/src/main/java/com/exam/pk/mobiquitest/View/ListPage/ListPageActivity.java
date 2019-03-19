@@ -18,7 +18,6 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.util.Objects;
 
-import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProviders;
@@ -165,7 +164,7 @@ public class ListPageActivity extends AppCompatActivity implements IRefreshCallb
         args.putInt("currentCategory",pageListTabs.getSelectedTabPosition());
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.setCustomAnimations(R.anim.enter_from_right,R.anim.exit_to_right);
-        fragmentTransaction.add(R.id.root_view,detailsFragment).addToBackStack("detailStack").commit();
+        fragmentTransaction.add(R.id.root_view,detailsFragment,"detailFragment").addToBackStack("detailStack").commit();
     }
 
     public void closeDetail(View v){

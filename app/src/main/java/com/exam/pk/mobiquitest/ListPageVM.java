@@ -16,6 +16,7 @@ public class ListPageVM extends ViewModel implements IListPageVM {
     private int mCurrentSelectedCategory,mCurrentSelectedProduct;
 
 
+
     public ListPageVM() {
         mNetworkManager = NetworkManager.getInstance();
         mNetworkManager.setListPagePresenter(this);
@@ -59,8 +60,16 @@ public class ListPageVM extends ViewModel implements IListPageVM {
     }
 
    public Product getCurrentProduct(){
-        Category currentCategory = mFullDataSet[mCurrentSelectedCategory];
-        return currentCategory.getProducts().get(mCurrentSelectedProduct);
+
+        Category currentCategory;
+        if(mFullDataSet != null){
+            currentCategory = mFullDataSet[mCurrentSelectedCategory];
+            return currentCategory.getProducts().get(mCurrentSelectedProduct);
+        }else{
+            return null;
+        }
+
+
    }
 
 
